@@ -2,6 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://140.143.243.43/tags/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:21.300Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43/repository/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:21.114Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43/links/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:21.053Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43/categories/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:20.859Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43/books/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:20.797Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43/about/index.html</loc>
+    
+    <lastmod>2019-02-14T18:17:20.602Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://140.143.243.43//404.html</loc>
+    
+    <lastmod>2019-02-14T18:17:20.540Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://140.143.243.43/2019/02/14/myBlog/</loc>
     
     <lastmod>2019-02-14T14:24:10.988Z</lastmod>
