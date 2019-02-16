@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://140.143.243.43/2019/02/17/Workerman%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
+    <loc>http://140.143.243.43/2019/02/17/Redis%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
+    <loc>http://140.143.243.43/2019/02/17/Linux%E4%B8%8Aiptables%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
+    <loc>http://140.143.243.43/2019/02/16/Centos7%E9%83%A8%E7%BD%B2LNMP-SSL%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <lastmod>2019-02-16</lastmod>
+  </url>  <url>
     <loc>http://140.143.243.43/2019/02/14/myBlog/</loc>
-    <lastmod>2019-02-14</lastmod>
+    <lastmod>2019-02-16</lastmod>
   </url>  <url>
     <loc>http://140.143.243.43/2019/02/15/hello-world/</loc>
     <lastmod>2019-02-14</lastmod>

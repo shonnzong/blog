@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Workerman安装使用 | ShonnZong的博客</title>
+  <meta name="description" content="安装说明WorkerMan实际上就是一个PHP代码包，如果你的PHP环境已经装好，只需要把WorkerMan源代码或者demo下载下来即可运行。 windows用户（必读）windows用户需要使用windows版本的workerman，windows版本workerman本身不依赖任何扩展，只需要配置好PHP环境变量即可，windows版本workerman安装及注意事项参见windows用户必">
+<meta name="keywords" content="workerman">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Workerman安装使用">
+<meta property="og:url" content="http://140.143.243.43/2019/02/17/Workerman安装使用/index.html">
+<meta property="og:site_name" content="ShonnZong的博客">
+<meta property="og:description" content="安装说明WorkerMan实际上就是一个PHP代码包，如果你的PHP环境已经装好，只需要把WorkerMan源代码或者demo下载下来即可运行。 windows用户（必读）windows用户需要使用windows版本的workerman，windows版本workerman本身不依赖任何扩展，只需要配置好PHP环境变量即可，windows版本workerman安装及注意事项参见windows用户必">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-02-16T18:42:46.477Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Workerman安装使用">
+<meta name="twitter:description" content="安装说明WorkerMan实际上就是一个PHP代码包，如果你的PHP环境已经装好，只需要把WorkerMan源代码或者demo下载下来即可运行。 windows用户（必读）windows用户需要使用windows版本的workerman，windows版本workerman本身不依赖任何扩展，只需要配置好PHP环境变量即可，windows版本workerman安装及注意事项参见windows用户必">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://140.143.243.43/2019/02/17/Workerman安装使用/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="ShonnZong的博客" type="application/atom+xml">
+  
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/shonnzong" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">ShonnZong</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Php后端开发工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> HangZhou, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/shonnzong" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Workerman安装使用" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Workerman安装使用
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/02/17/Workerman安装使用/" class="article-date">
+	  <time datetime="2019-02-16T18:07:37.000Z" itemprop="datePublished">2019-02-17</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/后端/">后端</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/workerman/">workerman</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/02/17/Workerman安装使用/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="安装说明"><a href="#安装说明" class="headerlink" title="安装说明"></a>安装说明</h3><p>WorkerMan实际上就是一个PHP代码包，如果你的PHP环境已经装好，只需要把WorkerMan源代码或者demo下载下来即可运行。</p>
+<h3 id="windows用户（必读）"><a href="#windows用户（必读）" class="headerlink" title="windows用户（必读）"></a>windows用户（必读）</h3><p>windows用户需要使用windows版本的workerman，windows版本workerman本身不依赖任何扩展，只需要配置好PHP环境变量即可，windows版本workerman安装及注意事项参见<a href="https://www.workerman.net/windows" target="_blank" rel="noopener">windows用户必看</a>。</p>
+<h3 id="Linux系统环境检测"><a href="#Linux系统环境检测" class="headerlink" title="Linux系统环境检测"></a>Linux系统环境检测</h3><p>Linux系统可以使用以下脚本测试本机PHP环境是否满足WorkerMan运行要求。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -Ss http://www.workerman.net/check.php | php</span><br></pre></td></tr></table></figure>
+<p>上面脚本如果全部显示ok，则代表满足WorkerMan要求，直接到官网下载例子即可运行。<br>如果不是全部ok，则参考下面文档安装缺失的扩展即可。<br>若出现Function stream_socket_server may be disabled. Please check disable_functions in php.ini<br>see <a href="http://doc3.workerman.net/faq/disable-function-check.html" target="_blank" rel="noopener">http://doc3.workerman.net/faq/disable-function-check.html</a><br>这里以lnmp集成安装包为例修改php.ini</p>
+<p>修改PHP配置文件:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/<span class="built_in">local</span>/php/etc/php.ini</span><br><span class="line"><span class="comment">#去除disable_functions 后面的 stream_socket_server</span></span><br></pre></td></tr></table></figure>
+<p>（注意：检测脚本中没有检测event扩展或者libevent扩展，如果业务并发连接数大于1024建议安装event扩展或者libevent扩展，安装方法参照下面说明）</p>
+<h3 id="已有PHP环境安装缺失扩展"><a href="#已有PHP环境安装缺失扩展" class="headerlink" title="已有PHP环境安装缺失扩展"></a>已有PHP环境安装缺失扩展</h3><p>1.<strong>安装pcntl和posix扩展：</strong></p>
+<p><strong>centos系统</strong><br>如果php是通过yum安装的，则命令行运行 yum install php-process即可安装pcntl和posix扩展。</p>
+<p>2.<strong>安装event或者libevent扩展：</strong></p>
+<p>为了能支持更大的并发连接数，建议安装event扩展或者libevent扩展(二者作用相同，二选一即可)。以Event为例，安装方法如下:</p>
+<p><strong>centos系统</strong></p>
+<p>a.安装event扩展依赖的libevent-devel包，命令行运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libevent-devel -y</span><br></pre></td></tr></table></figure>
+<p>b.安装event扩展，命令行运行<br>(event扩展要求PHP&gt;=5.4，PHP5.3用户请安装libevent扩展(libevent扩展同时支持php5.4-5.6)，见本页面底部)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pecl install event</span><br></pre></td></tr></table></figure>
+<p>注意提示：Include libevent OpenSSL support [yes] : 时输入no回车，其它直接敲回车就行<br>如果安装失败请跳过以下步骤，尝试安装libevent扩展，见本页面底部。</p>
+<p>c.命令行运行（如果ini文件位置不对，可以通过运行php –ini找到实际加载的ini文件路径）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> extension=event.so &gt; /etc/php.d/30-event.ini 这里若是lnmp集成安装包写/usr/<span class="built_in">local</span>/php/etc/php.ini</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://doc.workerman.net/315116" target="_blank" rel="noopener">GO</a></p>
+<h3 id="GatewayWorker安装"><a href="#GatewayWorker安装" class="headerlink" title="GatewayWorker安装"></a>GatewayWorker安装</h3><p><strong>Linux版安装</strong></p>
+<p>a、进入thinkphp5的目录，例cd /home/wwwroot/house.nbdeli.net/house，使用composer require workerman/gateway-worker 安装Linux版本的gateway<br>b、去官网下载Linux版的gateway-worker，里面有demo。 <a href="http://www.workerman.net/download" target="_blank" rel="noopener">http://www.workerman.net/download</a><br>c、将下载的压缩包解压，将Applications/Yourapp中的文件全部复制到thinkphp5目录application里面的任意文件夹，这里取名为push<br>d、将解压后的文件夹中的start.php复制到thinkphp5的根目录，即与application同级的目录<br>e、将start.php文件中最后部分forearch循环括号内的路径改为自己的正确路径<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__DIR__.<span class="string">'/application/push/start*.php'</span></span><br></pre></td></tr></table></figure></p>
+<p>f、在命令行php start.php start 启动</p>
+<p>以debug（调试）方式启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php start</span><br></pre></td></tr></table></figure></p>
+<p>以daemon（守护进程）方式启动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php start -d</span><br></pre></td></tr></table></figure></p>
+<p>停止<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php stop</span><br></pre></td></tr></table></figure></p>
+<p>重启<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php restart</span><br></pre></td></tr></table></figure></p>
+<p>平滑重启<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php reload</span><br></pre></td></tr></table></figure></p>
+<p>查看状态<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php status</span><br></pre></td></tr></table></figure></p>
+<p>查看连接状态（需要Workerman版本&gt;=3.5.0<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">php start.php connections</span><br></pre></td></tr></table></figure></p>
+<p>More info: <a href="https://www.cnblogs.com/wt645631686/p/7219519.html" target="_blank" rel="noopener">GO</a></p>
+<h3 id="Workerman-MySQL"><a href="#Workerman-MySQL" class="headerlink" title="Workerman/MySQL"></a>Workerman/MySQL</h3><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p>常驻内存的程序在使用mysql时经常会遇到mysql gone away的错误，这个是由于程序与mysql的连接长时间没有通讯，连接被mysql服务端踢掉导致。本数据库类可以解决这个问题，当发生mysql gone away错误时，会自动重试一次。</p>
+<h4 id="依赖的扩展"><a href="#依赖的扩展" class="headerlink" title="依赖的扩展"></a>依赖的扩展</h4><p>该mysql类依赖pdo和pdo_mysql两个扩展，缺少扩展会报Undefined class constant ‘MYSQL_ATTR_INIT_COMMAND’ in ….错误。<br>命令行运行php -m会列出所有php cli已安装的扩展，如果没有pdo 或者 pdo_mysql，请自行安装。</p>
+<p><strong>centos系统</strong><br>PHP5.x</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install php-pdo</span><br><span class="line">yum install php-mysql</span><br></pre></td></tr></table></figure>
+<p>PHP7.x</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install php70w-pdo_dblib.x86_64</span><br><span class="line">yum install php70w-mysqlnd.x86_64</span><br></pre></td></tr></table></figure>
+<p>如果找不到包名，请尝试用yum search php mysql查找</p>
+<p>1、<strong>安装 Workerman/MySQL</strong><br><strong>方法1：</strong><br>可以通过composer安装，命令行运行以下命令(composer源在国外，安装过程可能会非常慢)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require workerman/mysql</span><br></pre></td></tr></table></figure></p>
+<p>上面命令成功后会生成vendor目录，然后在项目中引入vendor下的autoload.php。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require_once __DIR__ . <span class="string">'/vendor/autoload.php'</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>方法2：</strong><br><a href="https://github.com/walkor/mysql/archive/master.zip" target="_blank" rel="noopener">下载源码</a>，解压后的目录放到自己项目中(位置任意)，直接require源文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require_once <span class="string">'/your/path/of/mysql-master/src/Connection.php'</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong><br>强烈建议在onWorkerStart回调中初始化数据库连接，避免在Worker::runAll();运行前就初始化连接，在Worker::runAll();运行前初始化的连接属于主进程，子进程会继承这个连接，主进程和子进程共用相同的数据库连接会导致错误。<br>示例<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line">use Workerman\Worker;</span><br><span class="line">require_once __DIR__ . <span class="string">'/Workerman/Autoloader.php'</span>;</span><br><span class="line">require_once __DIR__ . <span class="string">'/vendor/autoload.php'</span>;</span><br><span class="line"><span class="variable">$worker</span> = new Worker(<span class="string">'websocket://0.0.0.0:8484'</span>);</span><br><span class="line"><span class="variable">$worker</span>-&gt;onWorkerStart = <span class="keyword">function</span>(<span class="variable">$worker</span>)</span><br><span class="line">&#123;</span><br><span class="line">    // 将db实例存储在全局变量中(也可以存储在某类的静态成员中)</span><br><span class="line">    global <span class="variable">$db</span>;</span><br><span class="line">    <span class="variable">$db</span> = new \Workerman\MySQL\Connection(<span class="string">'host'</span>, <span class="string">'port'</span>, <span class="string">'user'</span>, <span class="string">'password'</span>, <span class="string">'db_name'</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="variable">$worker</span>-&gt;onMessage = <span class="keyword">function</span>(<span class="variable">$connection</span>, <span class="variable">$data</span>)</span><br><span class="line">&#123;</span><br><span class="line">    // 通过全局变量获得db实例</span><br><span class="line">    global <span class="variable">$db</span>;</span><br><span class="line">    // 执行SQL</span><br><span class="line">    <span class="variable">$all_tables</span> = <span class="variable">$db</span>-&gt;query(<span class="string">'show tables'</span>);</span><br><span class="line">    <span class="variable">$connection</span>-&gt;send(json_encode(<span class="variable">$all_tables</span>));</span><br><span class="line">&#125;;</span><br><span class="line">// 运行worker</span><br><span class="line">Worker::runAll();</span><br><span class="line">具体MySQL/Connection用法</span><br><span class="line">// 初始化db连接</span><br><span class="line"><span class="variable">$db</span> = new \Workerman\MySQL\Connection(<span class="string">'host'</span>, <span class="string">'port'</span>, <span class="string">'user'</span>, <span class="string">'password'</span>, <span class="string">'db_name'</span>);</span><br><span class="line">// 获取所有数据</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID,Sex'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'sex= :sex AND ID = :id'</span>)-&gt;bindValues(array(<span class="string">'sex'</span>=&gt;<span class="string">'M'</span>, <span class="string">'id'</span> =&gt; 1))-&gt;query();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID,Sex'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">"sex= 'M' AND ID = 1"</span>)-&gt;query();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;query(<span class="string">"SELECT ID,Sex FROM `Persons` WHERE sex='M' AND ID = 1"</span>);</span><br><span class="line">// 获取一行数据</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID,Sex'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'sex= :sex'</span>)-&gt;bindValues(array(<span class="string">'sex'</span>=&gt;<span class="string">'M'</span>))-&gt;row();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID,Sex'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">"sex= 'M' "</span>)-&gt;row();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;row(<span class="string">"SELECT ID,Sex FROM `Persons` WHERE sex='M'"</span>);</span><br><span class="line">// 获取一列数据</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'sex= :sex'</span>)-&gt;bindValues(array(<span class="string">'sex'</span>=&gt;<span class="string">'M'</span>))-&gt;column();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">"sex= 'F' "</span>)-&gt;column();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;column(<span class="string">"SELECT `ID` FROM `Persons` WHERE sex='M'"</span>);</span><br><span class="line">// 获取单个值</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'sex= :sex'</span>)-&gt;bindValues(array(<span class="string">'sex'</span>=&gt;<span class="string">'M'</span>))-&gt;single();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'ID'</span>)-&gt;from(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">"sex= 'F' "</span>)-&gt;single();</span><br><span class="line">//等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;single(<span class="string">"SELECT ID FROM `Persons` WHERE sex='M'"</span>);</span><br><span class="line">// 复杂查询</span><br><span class="line"><span class="variable">$db</span>-&gt;select(<span class="string">'*'</span>)-&gt;from(<span class="string">'table1'</span>)-&gt;innerJoin(<span class="string">'table2'</span>,<span class="string">'table1.uid = table2.uid'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'age &gt; :age'</span>)-&gt;groupBy(array(<span class="string">'aid'</span>))-&gt;having(<span class="string">'foo="foo"'</span>)-&gt;orderByASC/*orderByDESC*/(array(<span class="string">'did'</span>))</span><br><span class="line">-&gt;<span class="built_in">limit</span>(10)-&gt;offset(20)-&gt;bindValues(array(<span class="string">'age'</span> =&gt; 13));</span><br><span class="line">// 等价于</span><br><span class="line"><span class="variable">$db</span>-&gt;query(<span class="string">'SELECT * FROM `table1` INNER JOIN `table2` ON `table1`.`uid` = `table2`.`uid`</span></span><br><span class="line"><span class="string">WHERE age &gt; 13 GROUP BY aid HAVING foo="foo" ORDER BY did LIMIT 10 OFFSET 20'</span>);</span><br><span class="line">// 插入</span><br><span class="line"><span class="variable">$insert_id</span> = <span class="variable">$db</span>-&gt;insert(<span class="string">'Persons'</span>)-&gt;cols(array(</span><br><span class="line">    <span class="string">'Firstname'</span>=&gt;<span class="string">'abc'</span>,</span><br><span class="line">    <span class="string">'Lastname'</span>=&gt;<span class="string">'efg'</span>,</span><br><span class="line">    <span class="string">'Sex'</span>=&gt;<span class="string">'M'</span>,</span><br><span class="line">    <span class="string">'Age'</span>=&gt;13))-&gt;query();</span><br><span class="line">等价于</span><br><span class="line"><span class="variable">$insert_id</span> = <span class="variable">$db</span>-&gt;query(<span class="string">"INSERT INTO `Persons` ( `Firstname`,`Lastname`,`Sex`,`Age`)</span></span><br><span class="line"><span class="string">VALUES ( 'abc', 'efg', 'M', 13)"</span>);</span><br><span class="line">// 更新</span><br><span class="line"><span class="variable">$row_count</span> = <span class="variable">$db</span>-&gt;update(<span class="string">'Persons'</span>)-&gt;cols(array(<span class="string">'sex'</span>))-&gt;<span class="built_in">where</span>(<span class="string">'ID=1'</span>)</span><br><span class="line">-&gt;bindValue(<span class="string">'sex'</span>, <span class="string">'F'</span>)-&gt;query();</span><br><span class="line">// 等价于</span><br><span class="line"><span class="variable">$row_count</span> = <span class="variable">$db</span>-&gt;update(<span class="string">'Persons'</span>)-&gt;cols(array(<span class="string">'sex'</span>=&gt;<span class="string">'F'</span>))-&gt;<span class="built_in">where</span>(<span class="string">'ID=1'</span>)-&gt;query();</span><br><span class="line">// 等价于</span><br><span class="line"><span class="variable">$row_count</span> = <span class="variable">$db</span>-&gt;query(<span class="string">"UPDATE `Persons` SET `sex` = 'F' WHERE ID=1"</span>);</span><br><span class="line">// 删除</span><br><span class="line"><span class="variable">$row_count</span> = <span class="variable">$db</span>-&gt;delete(<span class="string">'Persons'</span>)-&gt;<span class="built_in">where</span>(<span class="string">'ID=9'</span>)-&gt;query();</span><br><span class="line">// 等价于</span><br><span class="line"><span class="variable">$row_count</span> = <span class="variable">$db</span>-&gt;query(<span class="string">"DELETE FROM `Persons` WHERE ID=9"</span>);</span><br><span class="line">// 事务</span><br><span class="line"><span class="variable">$db</span>-&gt;beginTrans();</span><br><span class="line">....</span><br><span class="line"><span class="variable">$db</span>-&gt;commitTrans(); // or <span class="variable">$db</span>-&gt;rollBackTrans();</span><br></pre></td></tr></table></figure></p>
+<p>More info: <a href="http://doc.workerman.net/components/workerman-mysql.html" target="_blank" rel="noopener">GO</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://140.143.243.43/2019/02/17/Workerman安装使用/" title="Workerman安装使用" target="_blank" rel="external">http://140.143.243.43/2019/02/17/Workerman安装使用/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/shonnzong" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/shonnzong" target="_blank"><span class="text-dark">ShonnZong</span><small class="ml-1x">Php后端开发工程师</small></a></h3>
+        <div>不要在该拼搏的年纪想得太多，做的太少。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2019/02/17/Redis安装使用/" title="Redis安装使用"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/shonnzong" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="/." target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
