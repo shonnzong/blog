@@ -18,19 +18,19 @@
   
   
   <title>Redis安装使用 | ShonnZong的博客</title>
-  <meta name="description" content="Linux 下安装下载地址：http://redis.io/download ,下载最新文档版本。本教程使用的最新文档版本为 4.0.1，下载并安装： 1234wget http://download.redis.io/releases/redis-4.0.1.tar.gztar xzf redis-4.0.1.tar.gzcd redis-4.0.1make make完后 redis-4.0.1">
+  <meta name="description" content="Ubuntu 下安装123456789101112131415安装：sudo apt-get updatesudo apt-get install redis-server启动：/etc/init.d/redis-server start若是lnmp 环境下：/etc/init.d/redis &amp;#123;start|stop|restart|kill&amp;#125;配置文件目录:/usr/local">
 <meta name="keywords" content="redis">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Redis安装使用">
 <meta property="og:url" content="https://www.yszldf.cn/2019/02/17/Redis安装使用/index.html">
 <meta property="og:site_name" content="ShonnZong的博客">
-<meta property="og:description" content="Linux 下安装下载地址：http://redis.io/download ,下载最新文档版本。本教程使用的最新文档版本为 4.0.1，下载并安装： 1234wget http://download.redis.io/releases/redis-4.0.1.tar.gztar xzf redis-4.0.1.tar.gzcd redis-4.0.1make make完后 redis-4.0.1">
+<meta property="og:description" content="Ubuntu 下安装123456789101112131415安装：sudo apt-get updatesudo apt-get install redis-server启动：/etc/init.d/redis-server start若是lnmp 环境下：/etc/init.d/redis &amp;#123;start|stop|restart|kill&amp;#125;配置文件目录:/usr/local">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://www.yszldf.cn/images/phpinfo.jpg">
-<meta property="og:updated_time" content="2019-06-14T07:41:20.838Z">
+<meta property="og:updated_time" content="2019-07-19T07:26:41.734Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Redis安装使用">
-<meta name="twitter:description" content="Linux 下安装下载地址：http://redis.io/download ,下载最新文档版本。本教程使用的最新文档版本为 4.0.1，下载并安装： 1234wget http://download.redis.io/releases/redis-4.0.1.tar.gztar xzf redis-4.0.1.tar.gzcd redis-4.0.1make make完后 redis-4.0.1">
+<meta name="twitter:description" content="Ubuntu 下安装123456789101112131415安装：sudo apt-get updatesudo apt-get install redis-server启动：/etc/init.d/redis-server start若是lnmp 环境下：/etc/init.d/redis &amp;#123;start|stop|restart|kill&amp;#125;配置文件目录:/usr/local">
 <meta name="twitter:image" content="https://www.yszldf.cn/images/phpinfo.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="https://www.yszldf.cn/2019/02/17/Redis安装使用/index.html">
@@ -223,7 +223,10 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h3><p>下载地址：<a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a> ,下载最新文档版本。<br>本教程使用的最新文档版本为 4.0.1，下载并安装：</p>
+        <h3 id="Ubuntu-下安装"><a href="#Ubuntu-下安装" class="headerlink" title="Ubuntu 下安装"></a>Ubuntu 下安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">安装：</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install redis-server</span><br><span class="line">启动：</span><br><span class="line">/etc/init.d/redis-server start</span><br><span class="line">若是lnmp 环境下：</span><br><span class="line">/etc/init.d/redis &#123;start|stop|restart|<span class="built_in">kill</span>&#125;</span><br><span class="line">配置文件目录:</span><br><span class="line">/usr/<span class="built_in">local</span>/redis/etc/redis.conf</span><br><span class="line">redis 开启远程访问：</span><br><span class="line">注释 <span class="built_in">bind</span> 127.0.0.1</span><br><span class="line">修改 protected-mode no</span><br><span class="line">杀死redis进程：</span><br><span class="line">ps -ef | grep redis  <span class="comment">#找出redis进程 root     20910 27214  0 14:33 pts/0    00:00:00 grep --color=auto redis</span></span><br><span class="line"><span class="built_in">kill</span> -9 20910</span><br></pre></td></tr></table></figure>
+<h3 id="Windows-下安装"><a href="#Windows-下安装" class="headerlink" title="Windows 下安装"></a>Windows 下安装</h3><p>下载地址：<a href="https://github.com/MSOpenTech/redis/releases" target="_blank" rel="noopener">https://github.com/MSOpenTech/redis/releases</a> ,Redis-x64-3.2.100.zip</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">启动:</span><br><span class="line">D:</span><br><span class="line"><span class="built_in">cd</span> redis</span><br><span class="line">redis-server.exe redis.windows.conf</span><br></pre></td></tr></table></figure>
+<h3 id="Linux-下安装"><a href="#Linux-下安装" class="headerlink" title="Linux 下安装"></a>Linux 下安装</h3><p>下载地址：<a href="http://redis.io/download" target="_blank" rel="noopener">http://redis.io/download</a> ,下载最新文档版本。<br>本教程使用的最新文档版本为 4.0.1，下载并安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.1.tar.gz</span><br><span class="line">tar xzf redis-4.0.1.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-4.0.1</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
 <p>make完后 redis-4.0.1目录下会出现编译后的redis服务程序redis-server,还有用于测试的客户端程序redis-cli,两个程序位于安装目录 src 目录下：<br>下面启动redis服务：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">./redis-server</span><br><span class="line"><span class="comment">#注意这种方式启动redis 使用的是默认配置。也可以通过启动参数告诉redis使用指定配置文件使用下面命令启动。</span></span><br><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">./redis-server redis.conf</span><br><span class="line"><span class="comment">#redis.conf是一个默认的配置文件。我们可以根据需要使用自己的配置文件。</span></span><br></pre></td></tr></table></figure>
@@ -344,6 +347,8 @@
 
     <div class="copyright">
     	
+        &copy; 2019 ShonnZong
+        
         <div class="publishby">
         	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
