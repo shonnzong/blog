@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yszldf.cn/"/>
-  <updated>2019-07-20T10:03:34.321Z</updated>
+  <updated>2019-08-22T06:42:03.500Z</updated>
   <id>https://www.yszldf.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>PHP秒杀设计</title>
+    <link href="https://www.yszldf.cn/2019/08/21/Php%E7%A7%92%E6%9D%80%E8%AE%BE%E8%AE%A1/"/>
+    <id>https://www.yszldf.cn/2019/08/21/Php秒杀设计/</id>
+    <published>2019-08-21T09:23:21.000Z</published>
+    <updated>2019-08-22T06:42:03.500Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="原理介绍"><a href="#原理介绍" class="headerlink" title="原理介绍"></a>原理介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">减而治之：</span><br><span class="line">CDN原理</span><br><span class="line">nginx限流</span><br><span class="line">异步队列</span><br><span class="line">分而治之：</span><br><span class="line">nginx负载均衡</span><br></pre></td></tr></table></figure><h3 id="特征与难点分析"><a href="#特征与难点分析" class="headerlink" title="特征与难点分析"></a>特征与难点分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">特征：</span><br><span class="line">写强一致性</span><br><span class="line">读弱一致性</span><br><span class="line">难点：</span><br><span class="line">极致性能的实现</span><br><span class="line">高可用的保证</span><br></pre></td></tr></table></figure><h3 id="压测工具的安装"><a href="#压测工具的安装" class="headerlink" title="压测工具的安装"></a>压测工具的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd-tools</span><br><span class="line">ab -V</span><br><span class="line">ab -n100 -c10 http://xxx<span class="comment">#-n表示总测试次数，-c表示测试并发数</span></span><br><span class="line"></span><br><span class="line">Requests per second: 101.15[<span class="comment">#/sec](mean)</span></span><br></pre></td></tr></table></figure><h3 id="nginx限流配置"><a href="#nginx限流配置" class="headerlink" title="nginx限流配置"></a>nginx限流配置</h3><ul><li>按连接数限速，即并发数（ngx_http_limit_conn_module）</li><li>按请求速率限速，按照ip限制单位时间内的请求数（ngx_http_limit_req_module）</li></ul><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">limit_req_zone <span class="variable">$binary_remote_addr</span> zone=mylimit:10m rate=1r/s;</span><br><span class="line"></span><br><span class="line"><span class="comment">#再在对应的location里面使用这个规则</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">limit_req_zone=mylimit burst=1 nodelay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="大型网站架构"><a href="#大型网站架构" class="headerlink" title="大型网站架构"></a>大型网站架构</h3><p><img src="/images/website.png" alt="website"></p><p>集群：高可用、高并发</p><ul><li>lvs层：基于4层负载均衡的机器，流量从路由器过来后，把TCP的头部做修改，然后把包转发给接入层</li><li>接入层：7层负载均衡器，解析包里面的内容，根据解析的域名不同跳转到server层</li><li>server层：</li></ul><p>各层之间互相检测心跳，当服务器出现宕机后，通过浮动更改服务器的ip地址，完成故障切换</p><h3 id="nginx负载均衡算法"><a href="#nginx负载均衡算法" class="headerlink" title="nginx负载均衡算法"></a>nginx负载均衡算法</h3><ul><li>Round-robin(轮询)</li><li>Weight-round-robin(带权轮询)</li><li>Ip-hash(Ip哈希)</li></ul><p>带权轮询模式：按照设置的比例轮询服务器执行脚本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">   server 192.168.0.1 weight=1;</span><br><span class="line">   server 192.168.0.2 weight=3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>More info: <a href="https://www.imooc.com/video/19877" target="_blank" rel="noopener">GO</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;原理介绍&quot;&gt;&lt;a href=&quot;#原理介绍&quot; class=&quot;headerlink&quot; title=&quot;原理介绍&quot;&gt;&lt;/a&gt;原理介绍&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre
+      
+    
+    </summary>
+    
+      <category term="后端" scheme="https://www.yszldf.cn/categories/%E5%90%8E%E7%AB%AF/"/>
+    
+    
+      <category term="php" scheme="https://www.yszldf.cn/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>ThinkPHP5常用命令</title>
@@ -493,31 +518,6 @@
     
     
       <category term="php" scheme="https://www.yszldf.cn/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript正则表达式限制输入框</title>
-    <link href="https://www.yszldf.cn/2019/02/21/JavaScript%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%99%90%E5%88%B6%E8%BE%93%E5%85%A5%E6%A1%86/"/>
-    <id>https://www.yszldf.cn/2019/02/21/JavaScript正则表达式限制输入框/</id>
-    <published>2019-02-21T09:40:08.000Z</published>
-    <updated>2019-06-14T07:41:20.495Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="输入框只能输入数字"><a href="#输入框只能输入数字" class="headerlink" title="输入框只能输入数字"></a>输入框只能输入数字</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="built_in">type</span>=<span class="string">"text"</span> onkeyup=<span class="string">"this.value=this.value.replace(/[^\d]/g,'') "</span> onafterpaste=<span class="string">"this.value=this.value.replace(/[^\d]/g,'') "</span> name=<span class="string">"f_order"</span> value=<span class="string">"1"</span>/&gt;</span><br><span class="line"><span class="comment">#其中，onafterpaste防止用户从其它地方copy内容粘贴到输入框</span></span><br></pre></td></tr></table></figure><h3 id="输入框只能输入字母和下横线"><a href="#输入框只能输入字母和下横线" class="headerlink" title="输入框只能输入字母和下横线"></a>输入框只能输入字母和下横线</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onkeyup=<span class="string">"this.value=this.value.replace(/[^_a-zA-Z]/g,'')"</span> onpaste=<span class="string">"this.value=this.value.replace(/[^_a-zA-Z]/g,'')"</span>&gt;</span><br></pre></td></tr></table></figure><h3 id="输入框只能输入字母数字和下横线"><a href="#输入框只能输入字母数字和下横线" class="headerlink" title="输入框只能输入字母数字和下横线"></a>输入框只能输入字母数字和下横线</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onkeyup=<span class="string">"this.value=this.value.replace(/[^\w]/g,'')"</span> onpaste=<span class="string">"this.value=this.value.replace(/[^\w]/g,'')"</span>&gt;</span><br><span class="line">或</span><br><span class="line">&lt;input onkeyup=<span class="string">"this.value=this.value.replace(/[\W]/g,'')"</span> onpaste=<span class="string">"this.value=this.value.replace(/[\W]/g,'')"</span>&gt;</span><br></pre></td></tr></table></figure><h3 id="输入框只能输入数字和英文"><a href="#输入框只能输入数字和英文" class="headerlink" title="输入框只能输入数字和英文"></a>输入框只能输入数字和英文</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;input onkeyup=<span class="string">"value=value.replace(/[\W]/g,'') "</span>onbeforepaste=<span class="string">"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"</span>&gt; </span><br><span class="line">只能输入数字的： </span><br><span class="line">&lt;input onkeyup=<span class="string">"value=value.replace(/[^\d]/g,'') "</span>onbeforepaste=<span class="string">"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"</span>&gt; </span><br><span class="line">只能输入全角的： </span><br><span class="line">&lt;input onkeyup=<span class="string">"value=value.replace(/[^\uFF00-\uFFFF]/g,'')"</span> onbeforepaste=<span class="string">"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\uFF00-\uFFFF]/g,''))"</span>&gt; </span><br><span class="line">只能输入汉字的： </span><br><span class="line">&lt;input onkeyup=<span class="string">"value=value.replace(/[^\u4E00-\u9FA5]/g,'')"</span> onbeforepaste=<span class="string">"clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))"</span>&gt; </span><br><span class="line">也可以这样： 输入数字和.，否则弹出输入有误 </span><br><span class="line">&lt;input <span class="built_in">type</span>=text name= caolig value =<span class="string">""</span> onblur=<span class="string">"if (!(/^[\d]+\.?\d*$/.test(this.value)) )&#123;alert('您的输入有误'); this.value='';this.focus();&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;输入框只能输入数字&quot;&gt;&lt;a href=&quot;#输入框只能输入数字&quot; class=&quot;headerlink&quot; title=&quot;输入框只能输入数字&quot;&gt;&lt;/a&gt;输入框只能输入数字&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
-      
-    
-    </summary>
-    
-      <category term="前端" scheme="https://www.yszldf.cn/categories/%E5%89%8D%E7%AB%AF/"/>
-    
-    
-      <category term="javascript" scheme="https://www.yszldf.cn/tags/javascript/"/>
     
   </entry>
   

@@ -17,20 +17,23 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Hello World | ShonnZong的博客</title>
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <title>PHP秒杀设计 | ShonnZong的博客</title>
+  <meta name="description" content="原理介绍123456减而治之：	CDN原理	nginx限流	异步队列分而治之：	nginx负载均衡 特征与难点分析123456特征：	写强一致性	读弱一致性难点：	极致性能的实现	高可用的保证 压测工具的安装12345yum -y install httpd-toolsab -Vab -n100 -c10 http://xxx	#-n表示总测试次数，-c表示测试并发数Requests per se">
+<meta name="keywords" content="php">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://140.143.243.43/2019/02/15/hello-world/index.html">
+<meta property="og:title" content="PHP秒杀设计">
+<meta property="og:url" content="https://www.yszldf.cn/2019/08/21/Php秒杀设计/index.html">
 <meta property="og:site_name" content="ShonnZong的博客">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="原理介绍123456减而治之：	CDN原理	nginx限流	异步队列分而治之：	nginx负载均衡 特征与难点分析123456特征：	写强一致性	读弱一致性难点：	极致性能的实现	高可用的保证 压测工具的安装12345yum -y install httpd-toolsab -Vab -n100 -c10 http://xxx	#-n表示总测试次数，-c表示测试并发数Requests per se">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-02-14T18:17:21.550Z">
+<meta property="og:image" content="https://www.yszldf.cn/images/website.png">
+<meta property="og:updated_time" content="2019-08-22T06:42:03.500Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="PHP秒杀设计">
+<meta name="twitter:description" content="原理介绍123456减而治之：	CDN原理	nginx限流	异步队列分而治之：	nginx负载均衡 特征与难点分析123456特征：	写强一致性	读弱一致性难点：	极致性能的实现	高可用的保证 压测工具的安装12345yum -y install httpd-toolsab -Vab -n100 -c10 http://xxx	#-n表示总测试次数，-c表示测试并发数Requests per se">
+<meta name="twitter:image" content="https://www.yszldf.cn/images/website.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://140.143.243.43/2019/02/15/hello-world/index.html">
+  <link rel="canonical" href="https://www.yszldf.cn/2019/08/21/Php秒杀设计/index.html">
   
     <link rel="alternate" href="/atom.xml" title="ShonnZong的博客" type="application/atom+xml">
   
@@ -180,14 +183,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-hello-world" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <article id="post-Php秒杀设计" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      PHP秒杀设计
     </h1>
   
 
@@ -195,30 +198,55 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2019/02/15/hello-world/" class="article-date">
-	  <time datetime="2019-02-14T18:17:21.550Z" itemprop="datePublished">2019-02-15</time>
+	<a href="/2019/08/21/Php秒杀设计/" class="article-date">
+	  <time datetime="2019-08-21T09:23:21.000Z" itemprop="datePublished">2019-08-21</time>
 	</a>
 </span>
         
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/后端/">后端</a>
+  </span>
+
         
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link" href="/tags/php/">php</a>
+  </span>
+
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/02/15/hello-world/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/21/Php秒杀设计/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h3 id="原理介绍"><a href="#原理介绍" class="headerlink" title="原理介绍"></a>原理介绍</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">减而治之：</span><br><span class="line">	CDN原理</span><br><span class="line">	nginx限流</span><br><span class="line">	异步队列</span><br><span class="line">分而治之：</span><br><span class="line">	nginx负载均衡</span><br></pre></td></tr></table></figure>
+<h3 id="特征与难点分析"><a href="#特征与难点分析" class="headerlink" title="特征与难点分析"></a>特征与难点分析</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">特征：</span><br><span class="line">	写强一致性</span><br><span class="line">	读弱一致性</span><br><span class="line">难点：</span><br><span class="line">	极致性能的实现</span><br><span class="line">	高可用的保证</span><br></pre></td></tr></table></figure>
+<h3 id="压测工具的安装"><a href="#压测工具的安装" class="headerlink" title="压测工具的安装"></a>压测工具的安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum -y install httpd-tools</span><br><span class="line">ab -V</span><br><span class="line">ab -n100 -c10 http://xxx	<span class="comment">#-n表示总测试次数，-c表示测试并发数</span></span><br><span class="line"></span><br><span class="line">Requests per second: 101.15[<span class="comment">#/sec](mean)</span></span><br></pre></td></tr></table></figure>
+<h3 id="nginx限流配置"><a href="#nginx限流配置" class="headerlink" title="nginx限流配置"></a>nginx限流配置</h3><ul>
+<li>按连接数限速，即并发数（ngx_http_limit_conn_module）</li>
+<li>按请求速率限速，按照ip限制单位时间内的请求数（ngx_http_limit_req_module）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/<span class="built_in">local</span>/nginx/conf/nginx.conf</span><br><span class="line">limit_req_zone <span class="variable">$binary_remote_addr</span> zone=mylimit:10m rate=1r/s;</span><br><span class="line"></span><br><span class="line"><span class="comment">#再在对应的location里面使用这个规则</span></span><br><span class="line">location ~ \.php$ &#123;</span><br><span class="line">	limit_req_zone=mylimit burst=1 nodelay;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="大型网站架构"><a href="#大型网站架构" class="headerlink" title="大型网站架构"></a>大型网站架构</h3><p><img src="/images/website.png" alt="website"></p>
+<p>集群：高可用、高并发</p>
+<ul>
+<li>lvs层：基于4层负载均衡的机器，流量从路由器过来后，把TCP的头部做修改，然后把包转发给接入层</li>
+<li>接入层：7层负载均衡器，解析包里面的内容，根据解析的域名不同跳转到server层</li>
+<li>server层：</li>
+</ul>
+<p>各层之间互相检测心跳，当服务器出现宕机后，通过浮动更改服务器的ip地址，完成故障切换</p>
+<h3 id="nginx负载均衡算法"><a href="#nginx负载均衡算法" class="headerlink" title="nginx负载均衡算法"></a>nginx负载均衡算法</h3><ul>
+<li>Round-robin(轮询)</li>
+<li>Weight-round-robin(带权轮询)</li>
+<li>Ip-hash(Ip哈希)</li>
+</ul>
+<p>带权轮询模式：按照设置的比例轮询服务器执行脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">upstream <span class="built_in">test</span> &#123;</span><br><span class="line">   server 192.168.0.1 weight=1;</span><br><span class="line">   server 192.168.0.2 weight=3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://www.imooc.com/video/19877" target="_blank" rel="noopener">GO</a></p>
 
       
     </div>
@@ -228,7 +256,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://140.143.243.43/2019/02/15/hello-world/" title="Hello World" target="_blank" rel="external">http://140.143.243.43/2019/02/15/hello-world/</a>
+      <a href="https://www.yszldf.cn/2019/08/21/Php秒杀设计/" title="PHP秒杀设计" target="_blank" rel="external">https://www.yszldf.cn/2019/08/21/Php秒杀设计/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -274,10 +302,10 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2019/02/16/Centos7部署LNMP-SSL服务器/" title="Centos7部署LNMP+SSL服务器"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
     
+    <li class="next">
+      <a href="/2019/07/20/ThinkPHP5常用命令/" title="ThinkPHP5常用命令"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
     
     
   </ul>
@@ -315,6 +343,8 @@
 
     <div class="copyright">
     	
+        &copy; 2019 ShonnZong
+        
         <div class="publishby">
         	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
