@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yszldf.cn/"/>
-  <updated>2020-01-20T06:30:51.046Z</updated>
+  <updated>2020-04-15T06:35:53.427Z</updated>
   <id>https://www.yszldf.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu18.04中使用Laradock部署LNMP环境</title>
+    <link href="https://www.yszldf.cn/2020/04/01/Ubuntu18.04%E4%B8%AD%E4%BD%BF%E7%94%A8Laradock%E9%83%A8%E7%BD%B2LNMP%E7%8E%AF%E5%A2%83/"/>
+    <id>https://www.yszldf.cn/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/</id>
+    <published>2020-04-01T05:14:52.000Z</published>
+    <updated>2020-04-15T06:35:53.427Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Laradock是运行在Docker上的PHP开发环境。</p><h3 id="快速安装"><a href="#快速安装" class="headerlink" title="快速安装"></a>快速安装</h3><h4 id="克隆-Laradock"><a href="#克隆-Laradock" class="headerlink" title="克隆 Laradock"></a>克隆 Laradock</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Laradock/laradock.git</span><br></pre></td></tr></table></figure><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp env-example .env</span><br></pre></td></tr></table></figure><blockquote><p>APP_CODE_PATH_CONTAINER             配置项目目录<br>WORKSPACE_COMPOSER_REPO_PACKAGIST    配置composer国内镜像<br>WORKSPACE_NVM_NODEJS_ORG_MIRROR    配置node.js淘宝镜像<br>WORKSPACE_NPM_REGISTRY            配置npm淘宝镜像<br>NGINX_HOST_HTTP_PORT                配置nginx端口映射<br>MYSQL_VERSION                        配置mysql版本<br>MYSQL_PASSWORD                    配置mysql中default用户的密码<br>MYSQL_ROOT_PASSWORD                配置mysql中root用户的密码</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Point to where the `APP_CODE_PATH_HOST` should be in the container</span></span><br><span class="line">APP_CODE_PATH_CONTAINER=/var/www/gr</span><br><span class="line"></span><br><span class="line">WORKSPACE_COMPOSER_REPO_PACKAGIST=https://packagist.phpcomposer.com</span><br><span class="line">WORKSPACE_NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node</span><br><span class="line">WORKSPACE_NPM_REGISTRY=http://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">NGINX_HOST_HTTP_PORT=8900</span><br><span class="line"></span><br><span class="line">MYSQL_VERSION=5.7</span><br><span class="line">MYSQL_PASSWORD=giantech</span><br><span class="line">MYSQL_ROOT_PASSWORD=giantech</span><br></pre></td></tr></table></figure><h4 id="安装docker与docker-compose"><a href="#安装docker与docker-compose" class="headerlink" title="安装docker与docker-compose"></a>安装docker与docker-compose</h4><p>删除旧版本的docker</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure><p>安装docker-ce</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure><p>安装docker-compose</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure><h4 id="启动nginx-php-fpm-mysql-redis-laravel-echo-server容器"><a href="#启动nginx-php-fpm-mysql-redis-laravel-echo-server容器" class="headerlink" title="启动nginx,php-fpm,mysql,redis,laravel-echo-server容器"></a>启动nginx,php-fpm,mysql,redis,laravel-echo-server容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d nginx php-fpm mysql redis laravel-echo-server</span><br></pre></td></tr></table></figure><blockquote><p>nginx项目的配置在./nginx/site目录下。<br>增加项目或者修改项目的配置，记得都要重启nginx。<br>nginx的访问日志在./logs/nginx目录，便于查看日志。</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DB_HOST=mysql </span><br><span class="line">DB_DATABASE=giantechMp</span><br><span class="line">DB_USER=root</span><br><span class="line">DB_PASSWORD=giantech</span><br></pre></td></tr></table></figure><blockquote><p>注意：Laradock5.5版本之后的MySQL版本是8.0，所以不能直接用root用户连接数据库。<br>需要创建一个其他的用户，再连接数据库。<br>这里DB_HOST是指mysql容器的名称，或者填写机器IP地址（不能填127.0.0.1，这个IP不会生效）</p></blockquote><h4 id="启动workspace容器"><a href="#启动workspace容器" class="headerlink" title="启动workspace容器"></a>启动workspace容器</h4><blockquote><p>启动worspace容器，这个容器主要使用用来管理项目的。<br>例如：执行一些cli的命令、php artisan、composer、php –version。</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d workspace</span><br></pre></td></tr></table></figure><blockquote><p>进入workspace容器的命令。</p></blockquote><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose <span class="built_in">exec</span> workspace bash</span><br></pre></td></tr></table></figure><h4 id="重启容器的命令"><a href="#重启容器的命令" class="headerlink" title="重启容器的命令"></a>重启容器的命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker-compose restart nginx</span><br><span class="line">docker-compose restart php-fpm</span><br><span class="line">docker-compose restart mysql</span><br><span class="line">docker-compose restart redis</span><br><span class="line">docker-compose restart laravel-echo-server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://www.cnblogs.com/yxhblogs/p/10203209.html" target="_blank" rel="noopener">GO</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;Laradock是运行在Docker上的PHP开发环境。&lt;/p&gt;
+&lt;h3 id=&quot;快速安装&quot;&gt;&lt;a href=&quot;#快速安装&quot; class=&quot;
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://www.yszldf.cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="laradock" scheme="https://www.yszldf.cn/tags/laradock/"/>
+    
+  </entry>
   
   <entry>
     <title>Laravel中广播的使用</title>
@@ -481,33 +507,6 @@
       
         &lt;p&gt;项目展示：&lt;br&gt;&lt;a href=&quot;/files/智能OA办公管理系统.pptx&quot;&gt;智能OA办公管理系统PPT&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;br&gt;展示地址：&lt;br&gt;&lt;a href=&quot;http://qjoa.nbdeli.net&quot; targe
-      
-    
-    </summary>
-    
-      <category term="项目展示" scheme="https://www.yszldf.cn/categories/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    
-    
-      <category term="项目展示" scheme="https://www.yszldf.cn/tags/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>普惠金融服务平台-项目展示</title>
-    <link href="https://www.yszldf.cn/2019/02/24/%E6%99%AE%E6%83%A0%E9%87%91%E8%9E%8D%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0-%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    <id>https://www.yszldf.cn/2019/02/24/普惠金融服务平台-项目展示/</id>
-    <published>2019-02-24T15:41:22.000Z</published>
-    <updated>2019-06-14T07:41:21.050Z</updated>
-    
-    <content type="html"><![CDATA[<p>项目展示：<br><a href="/files/普惠服务平台.pptx">普惠服务平台项目展示PPT</a></p><p>后台管理登录页：<br><img src="/images/puhui_admin.png" alt="puhui_admin"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;项目展示：&lt;br&gt;&lt;a href=&quot;/files/普惠服务平台.pptx&quot;&gt;普惠服务平台项目展示PPT&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;后台管理登录页：&lt;br&gt;&lt;img src=&quot;/images/puhui_admin.png&quot; alt=&quot;puhui_admin&quot;&gt;&lt;/p&gt;
-
       
     
     </summary>
