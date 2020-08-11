@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.yszldf.cn/"/>
-  <updated>2020-04-15T06:35:53.427Z</updated>
+  <updated>2020-08-11T06:24:35.384Z</updated>
   <id>https://www.yszldf.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Laradock中安装并使用mongo数据库</title>
+    <link href="https://www.yszldf.cn/2020/08/11/Laradock%E4%B8%AD%E5%AE%89%E8%A3%85%E5%B9%B6%E4%BD%BF%E7%94%A8mongo%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <id>https://www.yszldf.cn/2020/08/11/Laradock中安装并使用mongo数据库/</id>
+    <published>2020-08-11T05:14:52.000Z</published>
+    <updated>2020-08-11T06:24:35.384Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>MongoDB 是一个基于分布式文件存储的非关系数据库。</p><h3 id="安装-Mongo"><a href="#安装-Mongo" class="headerlink" title="安装 Mongo"></a>安装 Mongo</h3><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>进入laradock根目录，输入命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim .env</span><br><span class="line"></span><br><span class="line">WORKSPACE_INSTALL_MONGO=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">PHP_FPM_INSTALL_MONGO=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">MONGODB_PORT=27772</span><br></pre></td></tr></table></figure><h4 id="重新构建容器"><a href="#重新构建容器" class="headerlink" title="重新构建容器"></a>重新构建容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build workspace php-fpm</span><br></pre></td></tr></table></figure><h4 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d mongo</span><br></pre></td></tr></table></figure><h4 id="Laravel-中使用-mongo"><a href="#Laravel-中使用-mongo" class="headerlink" title="Laravel 中使用 mongo"></a>Laravel 中使用 mongo</h4><p>进入config/database.php文件添加配置项：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line"><span class="string">'mongodb'</span> =&gt; [</span><br><span class="line"><span class="string">'driver'</span> =&gt; <span class="string">'mongodb'</span>,</span><br><span class="line"><span class="string">'host'</span> =&gt; env(<span class="string">'DB_HOST'</span>,<span class="string">'localhost'</span>),</span><br><span class="line"><span class="string">'port'</span> =&gt; env(<span class="string">'DB_PORT'</span>,27772),</span><br><span class="line"><span class="string">'database'</span> =&gt; env(<span class="string">'DB_DATABASE'</span>,<span class="string">'database'</span>),</span><br><span class="line"><span class="string">'username'</span> =&gt; <span class="string">''</span>,</span><br><span class="line"><span class="string">'password'</span> =&gt; <span class="string">''</span>,</span><br><span class="line"><span class="string">'options'</span> =&gt; [</span><br><span class="line"><span class="string">'database'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">]</span><br><span class="line">],</span><br><span class="line">//...</span><br><span class="line">],</span><br></pre></td></tr></table></figure><p>进入Laravel根目录.env文件添加配置项：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DB_HOST=<span class="string">'IP'</span></span><br><span class="line">DB_PORT=27772</span><br><span class="line">DB_DATABASE=<span class="string">'数据库名称'</span></span><br></pre></td></tr></table></figure><p>通过 Composer 安装 jenssegers/mongodb 包，添加服务提供者（Laravel Service Provider）</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require jenssegers/mongodb</span><br></pre></td></tr></table></figure><p><a href="https://link.jianshu.com/?t=https://github.com/jenssegers/laravel-mongodb#eloquent" target="_blank" rel="noopener">查看文档</a></p><h3 id="Mongo基本操作"><a href="#Mongo基本操作" class="headerlink" title="Mongo基本操作"></a>Mongo基本操作</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; use giantechdata</span><br><span class="line">switched to db runoob</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;MongoDB 是一个基于分布式文件存储的非关系数据库。&lt;/p&gt;
+&lt;h3 id=&quot;安装-Mongo&quot;&gt;&lt;a href=&quot;#安装-Mongo&quot;
+      
+    
+    </summary>
+    
+      <category term="服务器" scheme="https://www.yszldf.cn/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
+    
+    
+      <category term="laradock" scheme="https://www.yszldf.cn/tags/laradock/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu18.04中使用Laradock部署LNMP环境</title>
@@ -481,32 +507,6 @@
         &lt;p&gt;项目展示：&lt;br&gt;&lt;a href=&quot;/files/中小型企业服务管理平台.docx&quot;&gt;中小型企业服务管理平台docx&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;后台管理页面：&lt;br&gt;&lt;img src=&quot;/images/dcoa.jpg&quot; alt=&quot;dcoa&quot;&gt;&lt;/p&gt;
 
-      
-    
-    </summary>
-    
-      <category term="项目展示" scheme="https://www.yszldf.cn/categories/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    
-    
-      <category term="项目展示" scheme="https://www.yszldf.cn/tags/%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>智能oa移动办公管理系统-项目展示</title>
-    <link href="https://www.yszldf.cn/2019/02/24/%E6%99%BA%E8%83%BDoa%E7%A7%BB%E5%8A%A8%E5%8A%9E%E5%85%AC%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F-%E9%A1%B9%E7%9B%AE%E5%B1%95%E7%A4%BA/"/>
-    <id>https://www.yszldf.cn/2019/02/24/智能oa移动办公管理系统-项目展示/</id>
-    <published>2019-02-24T15:57:58.000Z</published>
-    <updated>2019-06-14T07:41:21.151Z</updated>
-    
-    <content type="html"><![CDATA[<p>项目展示：<br><a href="/files/智能OA办公管理系统.pptx">智能OA办公管理系统PPT</a></p><p><strong>注意</strong><br>展示地址：<br><a href="http://qjoa.nbdeli.net" target="_blank" rel="noopener">GO</a><br>账号：见展示地址登录页<br>密码：默认123456</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;项目展示：&lt;br&gt;&lt;a href=&quot;/files/智能OA办公管理系统.pptx&quot;&gt;智能OA办公管理系统PPT&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;&lt;br&gt;展示地址：&lt;br&gt;&lt;a href=&quot;http://qjoa.nbdeli.net&quot; targe
       
     
     </summary>

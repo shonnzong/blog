@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top">
   
   
-  <title>Ubuntu18.04中使用Laradock部署LNMP环境 | ShonnZong的博客</title>
-  <meta name="description" content="概念Laradock是运行在Docker上的PHP开发环境。 快速安装克隆 Laradock1git clone https://github.com/Laradock/laradock.git 配置文件1cp env-example .env  APP_CODE_PATH_CONTAINER             配置项目目录WORKSPACE_COMPOSER_REPO_PACKAGIST">
+  <title>Laradock中安装并使用mongo数据库 | ShonnZong的博客</title>
+  <meta name="description" content="概念MongoDB 是一个基于分布式文件存储的非关系数据库。 安装 Mongo配置进入laradock根目录，输入命令： 1234567vim .envWORKSPACE_INSTALL_MONGO=truePHP_FPM_INSTALL_MONGO=trueMONGODB_PORT=27772 重新构建容器1docker-compose build workspace php-fpm 运行容器1">
 <meta name="keywords" content="laradock">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu18.04中使用Laradock部署LNMP环境">
-<meta property="og:url" content="https://www.yszldf.cn/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/index.html">
+<meta property="og:title" content="Laradock中安装并使用mongo数据库">
+<meta property="og:url" content="https://www.yszldf.cn/2020/08/11/Laradock中安装并使用mongo数据库/index.html">
 <meta property="og:site_name" content="ShonnZong的博客">
-<meta property="og:description" content="概念Laradock是运行在Docker上的PHP开发环境。 快速安装克隆 Laradock1git clone https://github.com/Laradock/laradock.git 配置文件1cp env-example .env  APP_CODE_PATH_CONTAINER             配置项目目录WORKSPACE_COMPOSER_REPO_PACKAGIST">
+<meta property="og:description" content="概念MongoDB 是一个基于分布式文件存储的非关系数据库。 安装 Mongo配置进入laradock根目录，输入命令： 1234567vim .envWORKSPACE_INSTALL_MONGO=truePHP_FPM_INSTALL_MONGO=trueMONGODB_PORT=27772 重新构建容器1docker-compose build workspace php-fpm 运行容器1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-15T06:35:53.427Z">
+<meta property="og:updated_time" content="2020-08-11T06:24:35.384Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu18.04中使用Laradock部署LNMP环境">
-<meta name="twitter:description" content="概念Laradock是运行在Docker上的PHP开发环境。 快速安装克隆 Laradock1git clone https://github.com/Laradock/laradock.git 配置文件1cp env-example .env  APP_CODE_PATH_CONTAINER             配置项目目录WORKSPACE_COMPOSER_REPO_PACKAGIST">
+<meta name="twitter:title" content="Laradock中安装并使用mongo数据库">
+<meta name="twitter:description" content="概念MongoDB 是一个基于分布式文件存储的非关系数据库。 安装 Mongo配置进入laradock根目录，输入命令： 1234567vim .envWORKSPACE_INSTALL_MONGO=truePHP_FPM_INSTALL_MONGO=trueMONGODB_PORT=27772 重新构建容器1docker-compose build workspace php-fpm 运行容器1">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://www.yszldf.cn/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/index.html">
+  <link rel="canonical" href="https://www.yszldf.cn/2020/08/11/Laradock中安装并使用mongo数据库/index.html">
   
     <link rel="alternate" href="/atom.xml" title="ShonnZong的博客" type="application/atom+xml">
   
@@ -181,14 +181,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Ubuntu18.04中使用Laradock部署LNMP环境" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <article id="post-Laradock中安装并使用mongo数据库" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Ubuntu18.04中使用Laradock部署LNMP环境
+      Laradock中安装并使用mongo数据库
     </h1>
   
 
@@ -196,8 +196,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/" class="article-date">
-	  <time datetime="2020-04-01T05:14:52.000Z" itemprop="datePublished">2020-04-01</time>
+	<a href="/2020/08/11/Laradock中安装并使用mongo数据库/" class="article-date">
+	  <time datetime="2020-08-11T05:14:52.000Z" itemprop="datePublished">2020-08-11</time>
 	</a>
 </span>
         
@@ -215,43 +215,25 @@
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/08/11/Laradock中安装并使用mongo数据库/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Laradock是运行在Docker上的PHP开发环境。</p>
-<h3 id="快速安装"><a href="#快速安装" class="headerlink" title="快速安装"></a>快速安装</h3><h4 id="克隆-Laradock"><a href="#克隆-Laradock" class="headerlink" title="克隆 Laradock"></a>克隆 Laradock</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/Laradock/laradock.git</span><br></pre></td></tr></table></figure>
-<h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp env-example .env</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>APP_CODE_PATH_CONTAINER             配置项目目录<br>WORKSPACE_COMPOSER_REPO_PACKAGIST    配置composer国内镜像<br>WORKSPACE_NVM_NODEJS_ORG_MIRROR    配置node.js淘宝镜像<br>WORKSPACE_NPM_REGISTRY            配置npm淘宝镜像<br>NGINX_HOST_HTTP_PORT                配置nginx端口映射<br>MYSQL_VERSION                        配置mysql版本<br>MYSQL_PASSWORD                    配置mysql中default用户的密码<br>MYSQL_ROOT_PASSWORD                配置mysql中root用户的密码</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Point to where the `APP_CODE_PATH_HOST` should be in the container</span></span><br><span class="line">APP_CODE_PATH_CONTAINER=/var/www/gr</span><br><span class="line"></span><br><span class="line">WORKSPACE_COMPOSER_REPO_PACKAGIST=https://packagist.phpcomposer.com</span><br><span class="line">WORKSPACE_NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node</span><br><span class="line">WORKSPACE_NPM_REGISTRY=http://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">NGINX_HOST_HTTP_PORT=8900</span><br><span class="line"></span><br><span class="line">MYSQL_VERSION=5.7</span><br><span class="line">MYSQL_PASSWORD=giantech</span><br><span class="line">MYSQL_ROOT_PASSWORD=giantech</span><br></pre></td></tr></table></figure>
-<h4 id="安装docker与docker-compose"><a href="#安装docker与docker-compose" class="headerlink" title="安装docker与docker-compose"></a>安装docker与docker-compose</h4><p>删除旧版本的docker</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io</span><br></pre></td></tr></table></figure>
-<p>安装docker-ce</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -fsSL https://get.docker.com -o get-docker.sh</span><br><span class="line"></span><br><span class="line">sudo sh get-docker.sh</span><br></pre></td></tr></table></figure>
-<p>安装docker-compose</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo curl -L <span class="string">"https://github.com/docker/compose/releases/download/1.23.1/docker-compose-<span class="variable">$(uname -s)</span>-<span class="variable">$(uname -m)</span>"</span> -o /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">sudo chmod +x /usr/<span class="built_in">local</span>/bin/docker-compose</span><br><span class="line"></span><br><span class="line">docker-compose --version</span><br></pre></td></tr></table></figure>
-<h4 id="启动nginx-php-fpm-mysql-redis-laravel-echo-server容器"><a href="#启动nginx-php-fpm-mysql-redis-laravel-echo-server容器" class="headerlink" title="启动nginx,php-fpm,mysql,redis,laravel-echo-server容器"></a>启动nginx,php-fpm,mysql,redis,laravel-echo-server容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d nginx php-fpm mysql redis laravel-echo-server</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>nginx项目的配置在./nginx/site目录下。<br>增加项目或者修改项目的配置，记得都要重启nginx。<br>nginx的访问日志在./logs/nginx目录，便于查看日志。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">DB_HOST=mysql </span><br><span class="line">DB_DATABASE=giantechMp</span><br><span class="line">DB_USER=root</span><br><span class="line">DB_PASSWORD=giantech</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：Laradock5.5版本之后的MySQL版本是8.0，所以不能直接用root用户连接数据库。<br>需要创建一个其他的用户，再连接数据库。<br>这里DB_HOST是指mysql容器的名称，或者填写机器IP地址（不能填127.0.0.1，这个IP不会生效）</p>
-</blockquote>
-<h4 id="启动workspace容器"><a href="#启动workspace容器" class="headerlink" title="启动workspace容器"></a>启动workspace容器</h4><blockquote>
-<p>启动worspace容器，这个容器主要使用用来管理项目的。<br>例如：执行一些cli的命令、php artisan、composer、php –version。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d workspace</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>进入workspace容器的命令。</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose <span class="built_in">exec</span> workspace bash</span><br></pre></td></tr></table></figure>
-<h4 id="重启容器的命令"><a href="#重启容器的命令" class="headerlink" title="重启容器的命令"></a>重启容器的命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker-compose restart nginx</span><br><span class="line">docker-compose restart php-fpm</span><br><span class="line">docker-compose restart mysql</span><br><span class="line">docker-compose restart redis</span><br><span class="line">docker-compose restart laravel-echo-server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://www.cnblogs.com/yxhblogs/p/10203209.html" target="_blank" rel="noopener">GO</a></p>
+        <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>MongoDB 是一个基于分布式文件存储的非关系数据库。</p>
+<h3 id="安装-Mongo"><a href="#安装-Mongo" class="headerlink" title="安装 Mongo"></a>安装 Mongo</h3><h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>进入laradock根目录，输入命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vim .env</span><br><span class="line"></span><br><span class="line">WORKSPACE_INSTALL_MONGO=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">PHP_FPM_INSTALL_MONGO=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">MONGODB_PORT=27772</span><br></pre></td></tr></table></figure>
+<h4 id="重新构建容器"><a href="#重新构建容器" class="headerlink" title="重新构建容器"></a>重新构建容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose build workspace php-fpm</span><br></pre></td></tr></table></figure>
+<h4 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d mongo</span><br></pre></td></tr></table></figure>
+<h4 id="Laravel-中使用-mongo"><a href="#Laravel-中使用-mongo" class="headerlink" title="Laravel 中使用 mongo"></a>Laravel 中使用 mongo</h4><p>进入config/database.php文件添加配置项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'connections'</span> =&gt; [</span><br><span class="line">	<span class="string">'mongodb'</span> =&gt; [</span><br><span class="line">		<span class="string">'driver'</span> =&gt; <span class="string">'mongodb'</span>,</span><br><span class="line">		<span class="string">'host'</span> =&gt; env(<span class="string">'DB_HOST'</span>,<span class="string">'localhost'</span>),</span><br><span class="line">		<span class="string">'port'</span> =&gt; env(<span class="string">'DB_PORT'</span>,27772),</span><br><span class="line">		<span class="string">'database'</span> =&gt; env(<span class="string">'DB_DATABASE'</span>,<span class="string">'database'</span>),</span><br><span class="line">		<span class="string">'username'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">		<span class="string">'password'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">		<span class="string">'options'</span> =&gt; [</span><br><span class="line">			<span class="string">'database'</span> =&gt; <span class="string">''</span>,</span><br><span class="line">		]</span><br><span class="line">	],</span><br><span class="line">	//...</span><br><span class="line">],</span><br></pre></td></tr></table></figure>
+<p>进入Laravel根目录.env文件添加配置项：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DB_HOST=<span class="string">'IP'</span></span><br><span class="line">DB_PORT=27772</span><br><span class="line">DB_DATABASE=<span class="string">'数据库名称'</span></span><br></pre></td></tr></table></figure>
+<p>通过 Composer 安装 jenssegers/mongodb 包，添加服务提供者（Laravel Service Provider）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">composer require jenssegers/mongodb</span><br></pre></td></tr></table></figure>
+<p><a href="https://link.jianshu.com/?t=https://github.com/jenssegers/laravel-mongodb#eloquent" target="_blank" rel="noopener">查看文档</a></p>
+<h3 id="Mongo基本操作"><a href="#Mongo基本操作" class="headerlink" title="Mongo基本操作"></a>Mongo基本操作</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; use giantechdata</span><br><span class="line">switched to db runoob</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -261,7 +243,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://www.yszldf.cn/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/" title="Ubuntu18.04中使用Laradock部署LNMP环境" target="_blank" rel="external">https://www.yszldf.cn/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/</a>
+      <a href="https://www.yszldf.cn/2020/08/11/Laradock中安装并使用mongo数据库/" title="Laradock中安装并使用mongo数据库" target="_blank" rel="external">https://www.yszldf.cn/2020/08/11/Laradock中安装并使用mongo数据库/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -307,13 +289,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2020/08/11/Laradock中安装并使用mongo数据库/" title="Laradock中安装并使用mongo数据库"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2020/01/07/Laravel中广播的使用/" title="Laravel中广播的使用"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2020/04/01/Ubuntu18.04中使用Laradock部署LNMP环境/" title="Ubuntu18.04中使用Laradock部署LNMP环境"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
